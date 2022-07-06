@@ -73,7 +73,7 @@ export const getPostDetails = async (slug) => {
         content {
           raw
         }
-        categories {
+        category {
           name
           slug
         }
@@ -90,7 +90,7 @@ export const getSimilarPosts = async (categories, slug) => {
   const query = gql`
     query GetPostDetails($slug: String!, $categories: [String!]) {
       posts(
-        where: {slug_not: $slug, AND: {categories_some: {slug_in: $categories}}}
+        where: {slug_not: $slug, AND: {category: {slug_in: $categories}}}
         last: 3
       ) {
         title
@@ -145,7 +145,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
 export const getCategoryPost = async (slug) => {
   const query = gql`
     query GetCategoryPost($slug: String!) {
-      postsConnection(where: {categories_some: {slug: $slug}}) {
+      postsConnection(where: {category: {slug: $slug}}) {
         edges {
           cursor
           node {
