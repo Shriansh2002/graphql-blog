@@ -90,7 +90,7 @@ export const getSimilarPosts = async (categories, slug) => {
   const query = gql`
     query GetPostDetails($slug: String!, $categories: [String!]) {
       posts(
-        where: {slug_not: $slug, AND: {category: {slug_in: $categories}}}
+        where: {slug_not: $slug, AND: {category_some: {slug_in: $categories}}}
         last: 3
       ) {
         title
