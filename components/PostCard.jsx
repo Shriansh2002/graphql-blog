@@ -3,7 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, makePayment }) => {
     return (
         <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
             <div className="relative overflow-hidden shadow-md pb-80 mb-6">
@@ -40,10 +40,17 @@ const PostCard = ({ post }) => {
             <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">
                 {post.excerpt}
             </p>
-            <div className="text-center">
+            <div className="text-center flex justify-between">
                 <Link href={`/post/${post.slug}`}>
                     <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">Continue Reading</span>
                 </Link>
+                <button
+                    type="button"
+                    className="text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2"
+                    onClick={makePayment}
+                >
+                    Pay
+                </button>
             </div>
         </div>
     );
